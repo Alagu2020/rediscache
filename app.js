@@ -21,7 +21,7 @@ app.get('/rockets', async (req,res,next)=>{
     const reply = await GET_ASYNC('rockets')
     const cacheddata =  await JSON.parse(reply)
     if (reply){
-        console.log('using cached data')
+        console.log('data received from redis caching')
         res.send(cacheddata)
         return
     }
