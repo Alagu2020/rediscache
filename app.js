@@ -1,13 +1,13 @@
 const express = require('express');
 const redis = require('redis');
-const timeStamp = require('time-stamp');
+const responseTime = require('response-time');
 const axios = require('axios');
 const{promisifyAll} = require('bluebird');
 
 promisifyAll(redis);
 
 const app  = express();
-app.use(timeStamp);
+app.use(responseTime());
 
 const client = redis.createClient()
 
@@ -33,7 +33,7 @@ app.get('/rockets', async (req,res,next)=>{
 
     }catch(err){
         console.log(err)
-        res.send(err)
+        res.send(err.message)
     }
 })
 
